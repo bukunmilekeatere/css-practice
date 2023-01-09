@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transitions and Animations</title>
+    <style>
+      /*
+        This styles the content so that when we scroll on the website,
+        it is a smoother movement.
+      */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        /* Part 1 */
+        display: inline-block;
+
+        background-color: #f5f5ff;
+        color: midnightblue;
+
+        /*
+          This styling is used to create the state before the aniation occurs.
+          We want out body to be completely tranparent and shifted up 100px
+          so that when the transition occurs the body can fade in and drop down 
+          into place.
+        */
+        opacity: 0;
+        transform: translateY(-100px);
+
+        /*
+          This defines our animation.
+
+          We define the animation-name as fade-in.
+          We define the animation-duration (how long the animation lasts) as 1 second.
+          We define the animation-timing-function (how the styling changes as it moves through the 
+          animation) as ease-in, which means it will slowly start the animation and speed up to the 
+          end.
+          We define the animation-delay as 2 seconds.
+          We define the animation-fill-mode (Whether the styling is kept at the end of the animation
+          or not) to forwards, which means to keep the styling that is at the end of the animation. 
+
+          Other animation properties that we do not define in this example are:
+          animation-iteration-count - how many times you want your animation to run
+
+          animation-direction - do you want your animation to go forward (normal)? Backward (reverse)?
+                                Forward and then backward (alternate)? Backward and then forward
+                                (alternate-reverse)?
+        */
+        -o-animation: fade-in 1s ease-in 2s forwards;
+        -moz-animation: fade-in 1s ease-in 2s forwards;
+        -webkit-animation: fade-in 1s ease-in 2s forwards;
+        animation: fade-in 1s ease-in 2s forwards;
+      }
+
+      /*
+        This defines the aniation itself. We use @keyframes to show that we are creating an 
+        animation and then we use the same name that we defined in the animation properly (i.e., fade-in).
+
+        Then, we define the starting point of the animation (from) and the styling at the starting point.
+
+        Finally, we define the ending point of the animation (to) and the styling at the ending point.
+
+        NOTE: You can also define %s of where different styling occurs (i.e., 0%, 33%, 66%, 100%).
+      */
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(-100px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      nav {
+        padding: 10px 0;
+
+        /*
+          This is how we apply linear gradients to a polygonal area.
+
+          The first parameter is the direction of the linear gradient (can be
+          to top, to bottom, to left, to right, to top left, to bottom right, etc.
+          or can be a specific degree amount, example: 60deg).
+
+          The next X parameters arou
+        */
+        background: -o-linear-gradient(60deg, #7f7fd5, #86a8e7, #91eae4);
+        background: -moz-linear-gradient(60deg, #7f7fd5, #86a8e7, #91eae4);
+        background: -webkit-linear-gradient(60deg, #7f7fd5, #86a8e7, #91eae4);
+        background: linear-gradient(60deg, #7f7fd5, #86a8e7, #91eae4);
+      }
+
+      nav ul {
+        list-style: none;
+      }
+
+      nav li {
+        display: inline-block;
+        margin: 10px;
+        font-size: 20px;
+      }
+
+      .nav-link {
+        margin: 4px;
+        border: 2px solid black;
+        padding: 5px;
+
+        background-color: #191970;
+        color: #f5f5ff;
+
+        -o-transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+        -moz-transition: background-color 0.5s ease-in-out,
+          color 0.5s ease-in-out;
+        -webkit-transition: background-color 0.5s ease-in-out,
+          color 0.5s ease-in-out;
+        transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+      }
+
+      /*
+        These are the user actions that will start the transition.
+        The transition will change the background color and font color 
+        smoothly because we change the background color and font color
+        inside this styling block.
+      */
+      nav a:hover,
+      nav a:focus {
+        background-color: #f5f5ff;
+        color: #191970;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 40px;
+      }
+
+      section {
+        position: relative;
+
+        /* Part 2 */
+        width: 25%;
+
+        /* NOTE: The only values that can be used for floats are left, right, and inherit. */
+        float: left;
+
+        margin: 20px;
+        margin-right: 2.5%;
+
+        background-color: #191970;
+        height: 50vh;
+
+        border-radius: 20px;
+      }
+
+      /*
+        This styles all divs on the web page to have a background color
+        of #d4ebf2, sets the div to use the automatic width of the
+        div, and sets the height to 200px. This also styles the border to
+        have a width of 2px with a solid black line, rounds the corners of
+        the div to have a radius of 20px, and adds 10px of padding to the
+        top and bottom of the div, as well as 20px of padding on the left
+        and right. Finally, aligns the text center.
+      */
+      div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+
+        display: inline-block;
+
+        background-color: #d4ebf2;
+        width: auto;
+        height: 200px;
+        border: 2px solid black;
+        border-radius: 20px;
+        padding: 10px 20px;
+        text-align: center;
+      }
+
+      p {
+        font-size: 24px;
+        color: #313131;
+      }
+
+      #styled-by-id {
+        font-family: Georgia, "Times New Roman", Cambria, serif;
+        font-weight: bold;
+      }
+
+      /*
+        This styles all spans on the web page to underline the text inside
+        the span and change the text to be italicized.
+      */
+      span {
+        text-decoration: underline;
+        font-style: italic;
+      }
+
+      #back-to-top {
+        /*
+          We change the display to a flexbox so that we can center the 
+          text inside the anchor horizontally and vertically.
+        */
+        display: -ms-flexbox;
+        display: -moz-box;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+
+        /*
+          This allows us to fix the position of the Back to Top button
+          to the bottom right corner of the web page and makes it follow 
+          the user as they scroll. 
+        */
+        position: fixed;
+        bottom: 20px;
+        right: 10px;
+
+        width: 80px;
+        height: 80px;
+
+        /*
+          This allows us to center our content horizontally in the 
+          Back to Top anchor.
+        */
+        -ms-flex-pack: center;
+        -moz-box-pack: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+
+        /*
+          This allows us to center our content vertically in the 
+          Back to Top anchor. 
+        */
+        -ms-flex-align: center;
+        -moz-box-aligh: center;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+
+        border: #121212 solid 2px;
+
+        -moz-border-radius: 40px;
+        -webkit-border-radius: 40px;
+        border-radius: 40px;
+
+        /*
+          This allows us to style the background of the Back to Top 
+          button to be a radical gradient because it is a round button.
+          The first color is at the center of the gradient and the second 
+          color is at the edge of the round area.
+        */
+        background: -o-radial-gradient(#91eae4, #86a8e7);
+        background: -moz-radial-gradient(#91eae4, #86a8e7);
+        background: -webkit-radial-gradient(#91eae4, #86a8e7);
+        background: radial-gradient(#91eae4, #86a8e7);
+
+        color: #313131;
+
+        text-align: center;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      #cleared {
+        /*
+          When we don't want an element to float beside other floated elements,
+          we use the clear property. This property will break the floating of elements
+          and any element added to the website underneath this element will also not float
+          beside other elements of the page.
+
+          NOTE: Whatever value you use for float is the value you should use for clear
+                (i.e., in this case it is left).
+        */
+        clear: left;
+      }
+    </style>
+  </head>
+  <body id="top">
+    <nav>
+      <ul>
+        <li><a href="index.html" class="nav-link">Inline CSS</a></li>
+        <li><a href="internal-css.html" class="nav-link">Internal CSS</a></li>
+        <li><a href="external-css.html" class="nav-link">External CSS</a></li>
+        <li>
+          <a href="testing-cascading.html" class="nav-link">
+            Testing Cascading
+          </a>
+        </li>
+        <li>
+          <a href="classes-and-ids.html" class="nav-link">Classes and IDs</a>
+        </li>
+        <li><a href="div-and-span.html" class="nav-link">Divs and Spans</a></li>
+        <li>
+          <a href="backgrounds-and-text.html" class="nav-link">
+            Backgrounds and Text
+          </a>
+        </li>
+        <li><a href="gradients.html" class="nav-link">Gradients</a></li>
+        <li><a href="transforms.html" class="nav-link">Transforms</a></li>
+        <li>
+          <a href="transitions-and-animations.html" class="nav-link">
+            Transitions and Animations
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <main>
+      <h1>Transitions and Animations</h1>
+
+      <!-- 
+        NOTE: This is NOT the proper way to use a div because it wraps around the
+              entire div.
+
+        This is a div, which is short for division. It is a block element that acts
+        like a container for multiple block elements.
+      -->
+      <section>
+        <div>
+          <p>This page shows the use of transitions and animations.</p>
+
+          <p>
+            Does this paragraph have the same styling as my other paragraph?
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div>
+          <p>This page shows the use of transitions and animations.</p>
+
+          <p>
+            Does this paragraph have the same styling as my other paragraph?
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div>
+          <p>This page shows the use of transitions and animations.</p>
+
+          <p>
+            Does this paragraph have the same styling as my other paragraph?
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div>
+          <p>This page shows the use of transitions and animations.</p>
+
+          <p>
+            Does this paragraph have the same styling as my other paragraph?
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div>
+          <p>This page shows the use of transitions and animations.</p>
+
+          <p>
+            Does this paragraph have the same styling as my other paragraph?
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div>
+          <p>This page shows the use of transitions and animations.</p>
+
+          <p>
+            Does this paragraph have the same styling as my other paragraph?
+          </p>
+        </div>
+      </section>
+
+      <p id="cleared">This element should not be beside the other boxes!</p>
+
+      <a href="#top" id="back-to-top">
+        Back <br />
+        to Top
+      </a>
+    </main>
+  </body>
+</html>
